@@ -1,0 +1,33 @@
+{
+	"name": "Web Novel Assistant",
+	"description": "Web小説を読むためのアシスタントツール",
+	"version": "0.0.0",
+	"manifest_version": 3,
+	"permissions": [
+		"activeTab"
+	],
+	"background": {
+		"service_worker": "dist/background.js"
+	},
+	"content_scripts": [
+		{
+			"matches": ["https://ncode.syosetu.com/**"],
+			"run_at": "document_idle",
+			"js": ["dist/site/syosetu.js"]
+		}
+	],
+	"commands": {
+		"next-page": {
+			"suggested_key": {
+				"default": "Ctrl+Right"
+			},
+			"description": "次のページへ"
+		},
+		"prev-page": {
+			"suggested_key": {
+				"default": "Ctrl+Left"
+			},
+			"description": "前のページへ"
+		}
+	}
+}
