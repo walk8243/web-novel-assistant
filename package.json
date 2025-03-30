@@ -2,7 +2,9 @@
   "name": "web-novel-assistant",
   "version": "0.0.0",
   "description": "Web小説を読むためのアシスタントツール",
+  "type": "module",
   "scripts": {
+    "build": "vite build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -16,6 +18,7 @@
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.8",
     "@types/chrome": "^0.0.313",
+    "@types/node": "^22.13.14",
     "typescript": "^5.8.2",
     "vite": "^6.2.3"
   }

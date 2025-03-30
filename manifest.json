@@ -13,7 +13,7 @@
 		{
 			"matches": ["https://ncode.syosetu.com/**"],
 			"run_at": "document_idle",
-			"js": ["dist/site/syosetu.js"]
+			"js": ["dist/script/syosetu.js"]
 		}
 	],
 	"commands": {
