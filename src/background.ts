@@ -6,11 +6,15 @@ chrome.commands.onCommand.addListener((command: string, tab: chrome.tabs.Tab) =>
 
 	chrome.tabs.sendMessage(tab.id, { command })
 		.then((response: unknown) => {
-			// Handle response if needed
 			console.debug(response);
 		})
 		.catch((error: any) => {
-			// Handle error if needed
+			if (error instanceof Error) {
+				if (error.message === 'Could not establish connection. Receiving end does not exist.') {
+					console.debug('The command was executed in an unrelated tab.');
+					return;
+				}
+			}
 			console.error('Error sending message:', error);
 		});
 });

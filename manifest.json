@@ -1,7 +1,7 @@
 {
 	"name": "Web Novel Assistant",
 	"description": "Web小説を読むためのアシスタントツール",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"manifest_version": 3,
 	"permissions": [
 		"activeTab"
