@@ -1,0 +1,48 @@
+#!/bin/node
+
+import fs from 'node:fs';
+import path from 'node:path';
+import archiver from 'archiver';
+
+const files = [
+	'../README.md',
+	'../LICENSE',
+	'../manifest.json',
+	'../dist',
+	'../image/icon48.png',
+	'../image/icon128.png',
+];
+
+const compress = (filename) => {
+	const archive = archiver('zip', {
+		zlib: { level: 9 },
+	});
+	const baseDir = path.resolve(import.meta.dirname, '../');
+
+	const destination = fs.createWriteStream(path.resolve(import.meta.dirname, '../', filename));
+	archive.pipe(destination);
+
+	files.forEach((file) => {
+		if (!file) return;
+		const filepath = path.resolve(import.meta.dirname, file);
+		const stat = fs.statSync(filepath);
+		if (stat.isDirectory()) {
+			archive.directory(filepath, path.relative(baseDir, file));
+			return;	
+		}
+		archive.file(filepath, { name: path.relative(baseDir, file) });
+	});
+
+	archive.finalize();
+}
+
+const main = () => {
+	const json = fs.readFileSync(path.resolve(import.meta.dirname, '../package.json'), 'utf-8');
+	const info = JSON.parse(json);
+	
+	const filename = `${info.name}-${info.version}.zip`;
+	compress(filename);
+	console.log(`Compressed to ${filename}`);
+};
+
+main();
