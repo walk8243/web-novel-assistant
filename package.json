@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
+    "prepack": "npm run build",
+    "pack": "node ./script/pack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
