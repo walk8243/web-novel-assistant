@@ -5,7 +5,13 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
+    "prepack": "npm run build",
+    "pack": "node ./script/pack",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/walk8243/web-novel-assistant.git"
   },
   "keywords": [],
   "author": {
@@ -19,6 +25,7 @@
     "@tsconfig/recommended": "^1.0.8",
     "@types/chrome": "^0.0.313",
     "@types/node": "^22.13.14",
+    "archiver": "^7.0.1",
     "typescript": "^5.8.2",
     "vite": "^6.2.3"
   }
