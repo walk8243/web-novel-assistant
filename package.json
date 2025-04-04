@@ -7,7 +7,8 @@
     "build": "vite build",
     "prepack": "npm run build",
     "pack": "node ./script/pack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "vite build --watch"
   },
   "repository": {
     "type": "git",

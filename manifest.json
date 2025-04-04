@@ -17,19 +17,22 @@
 			],
 			"run_at": "document_idle",
 			"js": ["dist/script/syosetu.js"]
+		},
+		{
+			"matches": [
+				"https://www.alphapolis.co.jp/novel/**"
+			],
+			"run_at": "document_idle",
+			"js": ["dist/script/alphapolis.js"]
 		}
 	],
 	"commands": {
 		"next-page": {
-			"suggested_key": {
-				"default": "Ctrl+Right"
-			},
+			"suggested_key": "Ctrl+Shift+Right",
 			"description": "次のページへ"
 		},
 		"prev-page": {
-			"suggested_key": {
-				"default": "Ctrl+Left"
-			},
+			"suggested_key": "Ctrl+Shift+Left",
 			"description": "前のページへ"
 		}
 	},
