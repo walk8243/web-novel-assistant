@@ -1,9 +1,9 @@
 import type {Site} from './Site';
 
-export const Syosetu = (): Site => {
+export const Alphapolis = (): Site => {
 
 	const goToNextPage = () => {
-		const nextPageButton = document.querySelector('.c-pager .c-pager__item--next');
+		const nextPageButton = document.querySelector('.episode-navigation .novel-navigation-link-next>a');
 		if (nextPageButton && nextPageButton instanceof HTMLAnchorElement) {
 			nextPageButton.click();
 			return { completed: true };
@@ -16,7 +16,7 @@ export const Syosetu = (): Site => {
 	};
 
 	const goToPreviousPage = () => {
-		const previousPageButton = document.querySelector('.c-pager .c-pager__item--before');
+		const previousPageButton = document.querySelector('.episode-navigation .novel-navigation-link-prev>a');
 		if (previousPageButton && previousPageButton instanceof HTMLAnchorElement) {
 			previousPageButton.click();
 			return { completed: true };
@@ -29,7 +29,7 @@ export const Syosetu = (): Site => {
 	};
 
 	return {
-		name: 'syosetu',
+		name: 'alphapolis',
 		goToNextPage,
 		goToPreviousPage,
 	};
