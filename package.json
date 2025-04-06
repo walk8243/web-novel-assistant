@@ -5,10 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "rspack build",
-    "prepack": "npm run build",
-    "pack": "node ./script/pack",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "verup": "node ./script/version",
     "watch": "rspack build --watch"
   },
   "repository": {
