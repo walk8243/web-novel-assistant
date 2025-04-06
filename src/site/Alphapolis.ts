@@ -28,9 +28,37 @@ export const Alphapolis = (): Site => {
 		};
 	};
 
+	const goToIndexPage = () => {
+		const indexPageButton = document.querySelector('.episode-navigation>a');
+		if (indexPageButton && indexPageButton instanceof HTMLAnchorElement) {
+			indexPageButton.click();
+			return { completed: true };
+		}
+
+		return {
+			error: 'Index page button not found',
+			completed: false,
+		};
+	};
+
+	const putBookmark = () => {
+		const bookmarkButton = document.querySelector('#main .novel-body>.bookmark');
+		if (bookmarkButton && bookmarkButton instanceof HTMLElement) {
+			bookmarkButton.click();
+			return { completed: true };
+		}
+
+		return {
+			error: 'Bookmark button not found',
+			completed: false,
+		};
+	};
+
 	return {
 		name: 'alphapolis',
 		goToNextPage,
 		goToPreviousPage,
+		goToIndexPage,
+		putBookmark,
 	};
 }

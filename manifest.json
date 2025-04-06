@@ -38,6 +38,14 @@
     "prev-page": {
       "suggested_key": "Ctrl+Shift+Left",
       "description": "前のページへ"
+    },
+    "index": {
+      "suggested_key": "Alt+Shift+C",
+      "description": "目次を開く"
+    },
+    "bookmark": {
+      "suggested_key": "Alt+Shift+G",
+      "description": "しおりを挟む"
     }
   },
   "icons": {
