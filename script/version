@@ -2,13 +2,38 @@
 
 import process from 'node:process';
 import { spawn } from 'node:child_process';
+import fs from 'node:fs';
+import path from 'node:path';
 
-const main = () => {
-	process.argv.slice(2).forEach((val, index) => {
-		console.log(`${index}: ${val}`);
+const updateNpmVersion = (version) => {
+	return new Promise((resolve, reject) => {
+		const npm = spawn('npm', ['version', '--no-commit-hooks', '--no-git-tag-version', version]);
+		npm.on('error', (code) => {
+			reject(new Error(`Failed to spawn npm process: ${code}`));
+		});
+		npm.on('exit', (code) => {
+			if (code !== 0) {
+				reject(new Error(`npm process exited with code: ${code}`));
+				return;
+			}
+			resolve();
+		});
 	});
+};
+const updateManifestVersion = () => {
+	const packageJson = fs.readFileSync(path.resolve(import.meta.dirname, '../package.json'), 'utf-8');
+	const packageInfo = JSON.parse(packageJson);
 
-	spawn('npm', ['version', '-commit-hooks', 'false'])
+	const manifestJson = fs.readFileSync(path.resolve(import.meta.dirname, '../manifest.json'), 'utf-8');
+	const manifestInfo = JSON.parse(manifestJson);
+
+	manifestInfo.version = packageInfo.version;
+	fs.writeFileSync(path.resolve(import.meta.dirname, '../manifest.json'), JSON.stringify(manifestInfo, null, '\t'));
+};
+
+const main = async () => {
+	await updateNpmVersion(process.argv[2]);
+	updateManifestVersion();
 };
 
 main();
