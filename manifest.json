@@ -1,43 +1,47 @@
 {
-	"name": "Web Novel Assistant",
-	"description": "Web小説を読むためのアシスタントツール",
-	"version": "0.0.1",
-	"manifest_version": 3,
-	"permissions": [
-		"activeTab"
-	],
-	"background": {
-		"service_worker": "dist/background.js"
-	},
-	"content_scripts": [
-		{
-			"matches": [
-				"https://ncode.syosetu.com/**",
-				"https://novel18.syosetu.com/**"
-			],
-			"run_at": "document_idle",
-			"js": ["dist/script/syosetu.js"]
-		},
-		{
-			"matches": [
-				"https://www.alphapolis.co.jp/novel/**"
-			],
-			"run_at": "document_idle",
-			"js": ["dist/script/alphapolis.js"]
-		}
-	],
-	"commands": {
-		"next-page": {
-			"suggested_key": "Ctrl+Shift+Right",
-			"description": "次のページへ"
-		},
-		"prev-page": {
-			"suggested_key": "Ctrl+Shift+Left",
-			"description": "前のページへ"
-		}
-	},
-	"icons": {
-		"48": "image/icon48.png",
-		"128": "image/icon128.png"
-	}
+  "name": "Web Novel Assistant",
+  "description": "Web小説を読むためのアシスタントツール",
+  "version": "0.1.1",
+  "manifest_version": 3,
+  "permissions": [
+    "activeTab"
+  ],
+  "background": {
+    "service_worker": "dist/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://ncode.syosetu.com/**",
+        "https://novel18.syosetu.com/**"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "dist/script/syosetu.js"
+      ]
+    },
+    {
+      "matches": [
+        "https://www.alphapolis.co.jp/novel/**"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "dist/script/alphapolis.js"
+      ]
+    }
+  ],
+  "commands": {
+    "next-page": {
+      "suggested_key": "Ctrl+Shift+Right",
+      "description": "次のページへ"
+    },
+    "prev-page": {
+      "suggested_key": "Ctrl+Shift+Left",
+      "description": "前のページへ"
+    }
+  },
+  "icons": {
+    "48": "image/icon48.png",
+    "128": "image/icon128.png"
+  }
 }
