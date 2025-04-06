@@ -1,0 +1,14 @@
+#!/bin/node
+
+import process from 'node:process';
+import { spawn } from 'node:child_process';
+
+const main = () => {
+	process.argv.slice(2).forEach((val, index) => {
+		console.log(`${index}: ${val}`);
+	});
+
+	spawn('npm', ['version', '-commit-hooks', 'false'])
+};
+
+main();
