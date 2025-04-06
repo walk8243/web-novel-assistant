@@ -1,0 +1,52 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "build",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": [],
+			"label": "npm: build",
+			"detail": "rspack build",
+		},
+		{
+			"type": "shell",
+			"label": "package ZIP",
+			"command": "node",
+			"args": [
+				"script/pack"
+			],
+			"problemMatcher": [],
+			"detail": "package ZIP",
+			"dependsOn": [
+				"npm: build"
+			],
+		},
+		{
+			"type": "shell",
+			"label": "version bump",
+			"command": "node",
+			"args": [
+				"script/version",
+				"${input:version}"
+			],
+			"problemMatcher": [],
+			"detail": "version bump to major, minor, or patch",
+		},
+	],
+	"inputs": [
+		{
+			"id": "version",
+			"type": "pickString",
+			"description": "Version to bump to (major, minor, patch)",
+			"options": [
+				"major",
+				"minor",
+				"patch"
+			],
+		}
+	]
+}
