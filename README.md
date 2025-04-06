@@ -11,5 +11,8 @@ npm ci
 npm run build
 
 # Extensionアップロード用パッケージ
-npm run pack
+node ./script/pack
+
+# バージョンアップ
+node ./script/version
 ```

@@ -1,0 +1,69 @@
+#!/bin/node
+
+import fs from 'node:fs';
+import path from 'node:path';
+import { parseArgs } from 'node:util';
+import { inc } from 'semver';
+
+const options = {
+	major: {
+		type: 'boolean',
+		short: 'x',
+		default: false,
+	},
+	minor: {
+		type: 'boolean',
+		short: 'y',
+		default: false,
+	},
+	patch: {
+		type: 'boolean',
+		short: 'z',
+		default: false,
+	},
+};
+
+const main = async () => {
+	// Parse command line arguments
+	const { values } = parseArgs({ options, strict: false });
+
+	// Read package.json
+	const packageJson = fs.readFileSync(path.resolve(import.meta.dirname, '../package.json'), 'utf-8');
+	const packageInfo = JSON.parse(packageJson);
+
+	// Update version
+	const version = verup(packageInfo.version, values);
+	console.log(`updating version ${packageInfo.version} to ${version}`);
+
+	// Update package.json
+	packageInfo.version = version;
+	fs.writeFileSync(path.resolve(import.meta.dirname, '../package.json'), JSON.stringify(packageInfo, null, 2));
+
+	// Read manifest.json
+	const manifestJson = fs.readFileSync(path.resolve(import.meta.dirname, '../manifest.json'), 'utf-8');
+	const manifestInfo = JSON.parse(manifestJson);
+
+	// Update manifest.json
+	manifestInfo.version = version;
+	fs.writeFileSync(path.resolve(import.meta.dirname, '../manifest.json'), JSON.stringify(manifestInfo, null, 2));
+};
+
+const verup = (version, target) => {
+	if (!version) {
+		return '0.0.0';
+	}
+
+	if (target.major) {
+		return inc(version, 'major');
+	}
+	if (target.minor) {
+		return inc(version, 'minor');
+	}
+	if (target.patch) {
+		return inc(version, 'patch');
+	}
+
+	throw new Error('Invalid target');
+}
+
+main();

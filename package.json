@@ -1,12 +1,10 @@
 {
   "name": "web-novel-assistant",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Web小説を読むためのアシスタントツール",
   "type": "module",
   "scripts": {
     "build": "rspack build",
-    "prepack": "npm run build",
-    "pack": "node ./script/pack",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "rspack build --watch"
   },
@@ -28,9 +26,11 @@
     "@tsconfig/recommended": "^1.0.8",
     "@types/chrome": "^0.0.313",
     "@types/node": "^22.13.14",
+    "@types/semver": "^7.7.0",
     "archiver": "^7.0.1",
     "esbuild": "^0.25.2",
     "esbuild-register": "^3.6.0",
+    "semver": "^7.7.1",
     "typescript": "^5.8.2"
   }
 }
