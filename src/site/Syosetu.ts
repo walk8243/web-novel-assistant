@@ -28,9 +28,37 @@ export const Syosetu = (): Site => {
 		};
 	};
 
+	const goToIndexPage = () => {
+		const indexPageButton = document.querySelector('.c-announce a:first-child');
+		if (indexPageButton && indexPageButton instanceof HTMLAnchorElement) {
+			indexPageButton.click();
+			return { completed: true };
+		}
+
+		return {
+			error: 'Index page button not found',
+			completed: false,
+		};
+	};
+
+	const putBookmark = () => {
+		const bookmarkButton = document.querySelector('.c-menu .c-menu__item>.c-bookmark-button');
+		if (bookmarkButton && bookmarkButton instanceof HTMLAnchorElement) {
+			bookmarkButton.click();
+			return { completed: true };
+		}
+
+		return {
+			error: 'Bookmark button not found',
+			completed: false,
+		};
+	};
+
 	return {
 		name: 'syosetu',
 		goToNextPage,
 		goToPreviousPage,
+		goToIndexPage,
+		putBookmark,
 	};
 }

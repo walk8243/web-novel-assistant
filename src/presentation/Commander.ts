@@ -25,6 +25,10 @@ export const Commander = (site: Site) => {
 				return site.goToNextPage();
 			case 'prev-page':
 				return site.goToPreviousPage();
+			case 'index':
+				return site.goToIndexPage();
+			case 'bookmark':
+				return site.putBookmark();
 			default:
 				return { error: 'Invalid command', completed: false };
 		}
