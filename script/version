@@ -7,13 +7,7 @@ import path from 'node:path';
 
 const updateNpmVersion = (version) => {
 	return new Promise((resolve, reject) => {
-		const npm = spawn('npm', ['version', '--no-commit-hooks', '--no-git-tag-version', version]);
-		npm.stdout.on('data', (data) => {
-			console.log(`stdout: ${data}`);
-		});
-		npm.stderr.on('data', (data) => {
-			console.error(`stderr: ${data}`);
-		});
+		const npm = spawn('npm', ['version', 'minor', '--no-commit-hooks', '--no-git-tag-version']);
 		npm.on('error', (code) => {
 			reject(new Error(`Failed to spawn npm process: ${code}`));
 		});
