@@ -8,7 +8,6 @@
     "prepack": "npm run build",
     "pack": "node ./script/pack",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "version": "node ./script/version",
     "watch": "rspack build --watch"
   },
   "config": {
